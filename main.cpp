@@ -1,4 +1,4 @@
 #include<iostream>
 int main(){
-    printf("abcdefghijklmnopxyzvw");
+    printf("git la de");
 }
