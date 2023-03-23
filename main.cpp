@@ -1,4 +1,8 @@
 #include<iostream>
+using namespace std;
 int main(){
-    printf("git la de");
+    int x;
+    cin>>x;
+    cout<<x;
+
 }
