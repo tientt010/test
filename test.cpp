@@ -5,5 +5,5 @@ int main(){
     cin>>x;
     cout<<x;
     //tien dep trai qua
-
+    //tai sao
 }
