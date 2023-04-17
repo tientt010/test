@@ -1,26 +1,27 @@
 #include<bits/stdc++.h>
-
 using namespace std;
-int a[65536];
 
-void test(int n,int l,int r){
-    if(n==0)return;
-    test(n-1,l,(l+r)/2-1);
-    a[(l+r)/2]=n;
-    test(n-1,(l+r)/2+1,r);
+string lineEncoding(string s)
+{
+    string p;
+    int n=s.size();
+    int k=1;
+    for(int i=0;i<n-1;i++){
+        if(s[i+1]==s[i]){
+            k++;
+        }else{
+            if(k==1)p=p+s[i];
+            else p=p+(char)(k+48)+s[i];
+            k=1;
+        }
+    }
+    if(k!=1)p=p+(char)(k+48)+s[s.size()-2];
+    else p=p+s[s.size()];
+    return p;
 }
 
 int main(){
-    int n;
-    cin>>n;
-    int r=pow(2,n)-1; 
-    test(n,0,r);
-    bool s[n]={};
-    for(int i=0;i<r;i++){
-        for(int j=0;j<n;j++)cout<<s[j];
-        cout<<endl;
-        if(s[n-a[i]]==0)s[n-a[i]]=1;
-        else s[n-a[i]]=0;
-    }
-    for(int j=0;j<n;j++)cout<<s[j];
+    string s;
+    cin>>s;
+    cout<<lineEncoding(s);
 }
