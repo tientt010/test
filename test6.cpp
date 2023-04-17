@@ -1,23 +1,41 @@
 #include<stdio.h>
+#include<math.h>
 
-unsigned long long counttamgiac(unsigned long long n){
-    if(n==3)return 4;
-    unsigned long long p=n%3;
-    unsigned long long q;
-    if(p==0)q=(unsigned long long)n/3;
-    else q=(unsigned long long)n/3+1;
-    return (unsigned long long)q*(unsigned long long)(p+n)/2+(unsigned long long)counttamgiac(n-2);
+int partition(int a[],int l,int r){
+	int x=a[l];														
+	int i=l-1, j=r+1;												
+	while(1){														
+		do{
+			i++;
+		}while(a[i]<x);												
+		do{
+			j--;
+		}while(a[j]>x);												
+		if(i<j){
+			int tmp=a[i];
+			a[i]=a[j];
+			a[j]=tmp;													
+		}else return j;
+	}
+}
+void quicksort(int a[],int l,int r){
+	if(l>=r)return;
+	int p=partition(a,l,r);										
+	quicksort(a,l,p);											
+	quicksort(a,p+1,r);
 }
 
+
+
 int main(){
-    unsigned long long n;
-    scanf("%llu",&n);
-    unsigned long long ans=0;
-    n=(unsigned long long)2*n-1;
-    for( long long i=n;i>=0;i-=2){
-        for(long long j=i;j>0;j-=3){
-            ans+=j;
-        }
+    int n;
+    scanf("%d",&n);
+    int a[n+1];
+    for(int i=0;i<n;i++){
+        scanf("%d",&a[i]);
     }
-    printf("%llu",ans);
+    quicksort(a,0,n-1);
+    char q='"';
+    if(a[n-1]>=(a[0]+a[1])||(a[0]>=(a[n-1]+a[1])||a[1]>=(a[0]+a[n-1])))printf("%cCO%c",q,q);
+    else printf("%cKHONG%c",q,q);   
 }
