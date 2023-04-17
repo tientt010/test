@@ -4,24 +4,14 @@ int main(){
     int t;
     scanf("%d",&t);
     while(t--){
-        long long n;
-        scanf("%lld",&n);
-        long long k=-1;
-        if(n%2==1)k=2;
-        else{
-            long long m=sqrt(2*n);
-            for(long long i=3;i<=m;i++){
-                if((2*n)%i==0){
-                    if((n%i==0)&&(i%2!=0)){
-                        k=i;
-                        break;
-                    }else if(i%4==0){
-                        k=i;
-                        break;
-                    }
-                }
-            }
+        long long m,a,b;
+        scanf("%lld%lld%lld",&m,&a,&b,);
+        long long n=m;
+        n*=(m+a);
+        n*=(m+b);
+        int c[10000];
+        for(long long i=2;i<=n;i++){
+            if
         }
-        printf("%lld\n",k);
     }
 }
