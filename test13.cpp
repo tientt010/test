@@ -1,34 +1,42 @@
-#include<iostream>
-#define mod 1000000007
-long long modulo(long long x){                          // tìm nghịch đảo modulo của số x
-    long long tmp=mod-2;
-    long long modulo=1;
-    while(tmp!=0){
-        if(tmp%2==1){
-            modulo=(x*modulo)%mod;   
-        }
-        tmp/=2;
-        x=(x*x)%mod;
-    }
-    return modulo % mod;
-}
 
-long long modpow(long long x,long long n){              // tìm số dư của x mũ n cho mod;
-    long long modpow=1;
-    while(n!=0){
-        if(n%2==1){
-            modpow=(x*modpow)%mod;
-        }
-        n/=2;
-        x=(x*x)%mod;
-    }
-    return modpow;
-}
+#include<bits/stdc++.h>
 
 using namespace std;
 
+unsigned long long test(int x){
+    unsigned long long ans=1;
+    for(int i=0;i<x;i++){
+        ans*=10;
+    }
+    return ans;
+}
 int main(){
-    long long n;
-    cin>>n;
-    cout<<modpow(2,n);
+    int m;
+    cin>>m;
+    unsigned long long a[1000];
+    for(int i=0;i<m;i++)cin>>a[i];
+    map<unsigned long long,unsigned long long> mp;
+    unsigned long long p=1;
+    unsigned long long n=1;
+    while(n<=18){
+        mp[p]=n;
+        unsigned long long tmp2=(unsigned long long)(test(n-1)*n*9);
+        p+=tmp2;
+        n++;
+    }
+    auto it=mp.begin();
+    for(int i=0;i<m;i++){
+        it=mp.upper_bound(a[i]);
+        advance(it,-1);
+        unsigned long long tmp=(*it).second;
+        //cout<<(*it).first;
+        unsigned long long p=a[i]-(*it).first;
+        unsigned long long d=p/tmp;
+        unsigned long long mod=p%tmp;
+        unsigned long long x=(unsigned long long)pow(10,tmp-1);
+        x+=d;
+        string s=to_string(x);
+        cout<<s[mod]<<endl;
+
+    }
 }

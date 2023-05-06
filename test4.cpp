@@ -1,17 +1,29 @@
 #include<stdio.h>
-#include<math.h>
+#include<string.h>
 int main(){
-    int t;
-    scanf("%d",&t);
-    while(t--){
-        long long m,a,b;
-        scanf("%lld%lld%lld",&m,&a,&b,);
-        long long n=m;
-        n*=(m+a);
-        n*=(m+b);
-        int c[10000];
-        for(long long i=2;i<=n;i++){
-            if
-        }
-    }
+	int solama[200];
+	solama['I']=1;
+	solama['V']=5;
+	solama['X']=10;
+	solama['L']=50;
+	solama['C']=100;
+	solama['D']=500;
+	solama['M']=1000;
+	int t;
+	scanf("%d",&t);
+	while(t--){
+		getchar();
+		char s[5000];
+		scanf("%s",s);
+		int n=strlen(s);
+		int sothapphan=0;
+		for(int i=n-2;i>=0;i--){
+			if(solama[(int)s[i]]>=solama[(int)s[i+1]]){
+				sothapphan+=solama[(int)s[i]];
+			}else sothapphan-=solama[(int)s[i]];
+		}	
+		sothapphan+=solama[(int)s[n-1]];
+		printf("%d\n",sothapphan);
+	}
+	return 0;
 }

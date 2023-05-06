@@ -1,83 +1,40 @@
-#include<stdio.h>
-#include<string.h>
-int partition(long long a[],int l,int r){
-	long long x=a[l];														
-	int i=l-1, j=r+1;												
-	while(1){														
-		do{
-			i++;
-		}while(a[i]<x);												
-		do{
-			j--;
-		}while(a[j]>x);												
-		if(i<j){
-			long long tmp=a[i];
-			a[i]=a[j];
-			a[j]=tmp;													
-		}else return j;
-	}
-}
-void quicksort(long long a[],int l,int r){
-	if(l>=r)return;
-	int p=partition(a,l,r);										
-	quicksort(a,l,p);											
-	quicksort(a,p+1,r);
-}
-void lat_nguoc (int a[],int n){
-    int l=0,r=n-1;
-    while(l<r){
-        int tmp=a[l];
-        a[l]=a[r];
-        a[r]=tmp;
-        l++;
-        r--;
-    }
-}
-void tinh_tong(char a[],char b[]){
-    int n1=strlen(a),n2=strlen(b);
-    int x[n1],y[n1],z[n1+1];
-    for(int i=0;i<n1;i++)x[i]=a[i]-'0';
-    for(int i=0;i<n2;i++)y[i]=b[i]-'0';
-    lat_nguoc(x,n1);
-    lat_nguoc(y,n2);
-    for(int i=n2;i<n1;i++){
-        y[i]=0;
-    }
-    int n=0;
-    int nho=0;
-    for(int i=0;i<n1;i++){
-        int tmp=x[i]+y[i]+nho;
-        z[n++]=tmp%10;
-        nho=tmp/10;
-    }
-    if(nho==1){
-        z[n++]=nho;
-    }
-    for(int i=n-1;i>=0;i--)printf("%d",z[i]);
-}
-
-
-
+#include<bits/stdc++.h>
+ 
+using namespace std;
+ 
 int main(){
-    int t;
-    scanf("%d",&t);
-    getchar();
-    while(t--){
-        char s[1000];
-        gets(s);
-        int n=strlen(s);
-        int a[1000];
-        int m=0;
-        for(int i=0;i<n;i++){
-            if(s[i]>='0'&&s[i]<='9'){
-                a[m++]=(int)s[i]-'0';
+    multiset<int> s;
+    int n,x;
+    cin>>n>>x;
+    int tmp;
+    for(int i=0;i<n;i++){
+        cin>>tmp;
+        s.insert(tmp);
+    } 
+    int ans=0;
+    for(auto it1=s.begin();it1!=s.end();it1++){
+        int p=x-(*it1);
+        auto it2=s.end();
+        advance(it2,-1);
+        int check=1;
+      //  cout<<*it2<<endl;
+        for(;it2!=it1;it2--){
+            if(it2==it1)break;
+            if((*it2)<=p){
+                check=0;
+   //             cout<<*it2<<endl;
+                s.erase(it2);
+                break;
+
             }
         }
-        if(m==0){
-            printf("0\n");
-            continue;
+        if(check==1){
+            for(auto k:s){
+                if(k>=(*it1))ans++;
+            }
+            break;
         }
-        
-
+        ans++;
     }
+    cout<<ans;
 }
