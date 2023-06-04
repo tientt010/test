@@ -1,25 +1,44 @@
-#include<stdio.h>
+//1. Cột có tổng lớn nhất. Đưa ra giá trị lớn nhất đó
+//Input:
+//3 4
+//8 5 2 3
+//9 2 12 10
+//1 9 10 2
+//Output:
+//24
 
-int main(){
-    int m,n;
-    scanf("%d%d",&m,&n);
-    int a[100][100];
-    int hangmin=0;
-    int min=0;
-    for(int i=0;i<m;i++){
-        for(int j=0;j<n;j++){
-            scanf("%d",&a[i][j]);
-        }
-    }
-    for(int i=0;i<m;i++){
-        int sum=0;
-        for(int j=0;j<n;j++){
-            sum+=a[i][j];
-        }
-        if(sum<min){
-            min=sum;
-            hangmin=i;
-        }
-    }
-    printf("hang co tong nho nhat la %d",hangmin+1);
-}
+//2. Tìm phần tử là số nguyên tố lớn nhất trong ma trận 
+//Input:   
+//3 3
+//1 5 3 
+//9 4 7
+//10 2 6
+//Output:
+//7
+
+//3. Tìm UCLN, BCNN của 2 số
+//Input:
+//12 15
+//Output:
+//3 60
+
+//4. Tìm số bé nhất và bé thứ 2 trong mảng 1 chiều
+//Input:
+//5
+//7 4 2 9 1
+//Output:
+//1 2
+
+//5. Cộng 2 ma trận
+//Input:
+//3 3
+//1 2 3
+//2 2 2 
+//6 5 4
+//2 2 1
+//1 1 1
+//1 0 0
+//Output:
+//3 4 4
+//3 3 3
+//7 5 4
