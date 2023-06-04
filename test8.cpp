@@ -1,23 +1,31 @@
 #include<stdio.h>
+void xuatmang(int a[],int n){
+	for(int i=0;i<n;i++){
+		printf("%d ",a[i]);
+	}
+}
 int main(){
-	int m;
-	scanf("%d",&m);
-	int a[m][m];
-	for(int i=0;i<m;i++){
-		for(int j=0;j<m;j++){
-			scanf("%d",&a[i][j]);
-		}
+    int n; 
+	scanf("%d",&n);
+	int a[100];
+	int b[100];
+	for(int i=0;i<n;i++){
+		scanf("%d",&a[i]);
 	}
-	for(int i=0;i<m;i++){
-		int tmp=a[i][i];
-		a[i][i]=a[i][m-i-1];
-		a[i][m-i-1]=tmp;
-	}
-	for(int i=0;i<m;i++){
-		for(int j=0;j<m;j++){
-			printf("%d ",a[i][j]);
+	for(int i=0;i<n;i++){
+		int j=i;
+		b[j]=a[i];
+		while(j>0){
+			if(b[j]<b[j-1]){
+				int tmp=b[j];
+				b[j]=b[j-1];
+				b[j-1]=tmp;
+			}
+			j--;
 		}
+		xuatmang(b,i+1);
 		printf("\n");
 	}
-
+	
+	return 0;
 }

@@ -1,29 +1,38 @@
 #include<stdio.h>
-#include<string.h>
+
+struct test{
+    int so;
+    int tong;
+};
+
+int tongchuso(int x){
+    int ans=0;
+    while(x>0){
+        ans+=(x%10);
+        x/=10;
+    }
+    return ans;
+}
+
 int main(){
-	int solama[200];
-	solama['I']=1;
-	solama['V']=5;
-	solama['X']=10;
-	solama['L']=50;
-	solama['C']=100;
-	solama['D']=500;
-	solama['M']=1000;
-	int t;
-	scanf("%d",&t);
-	while(t--){
-		getchar();
-		char s[5000];
-		scanf("%s",s);
-		int n=strlen(s);
-		int sothapphan=0;
-		for(int i=n-2;i>=0;i--){
-			if(solama[(int)s[i]]>=solama[(int)s[i+1]]){
-				sothapphan+=solama[(int)s[i]];
-			}else sothapphan-=solama[(int)s[i]];
-		}	
-		sothapphan+=solama[(int)s[n-1]];
-		printf("%d\n",sothapphan);
-	}
-	return 0;
+    int n;
+    scanf("%d",&n);
+    struct test a[1000];
+    for(int i=0;i<n;i++){
+        scanf("%d",&a[i].so);
+        a[i].tong=tongchuso(a[i].so);
+    }
+    for(int i=0;i<n;i++){
+        for(int j=i+1;j<n;j++){
+            if(a[i].tong>a[j].tong){
+                struct test tmp=a[i];
+                a[i]=a[j];
+                a[j]=tmp;
+            }
+        }
+    }
+    for(int i=0;i<n;i++){
+        printf("%d ",a[i].so);
+    }
+
 }

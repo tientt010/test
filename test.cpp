@@ -1,45 +1,25 @@
-#include "user.h"
-#include <iostream>
+#include<stdio.h>
 
-user :: user(){
-    this -> name = "user_number";
-    this -> money = 0;
+int main(){
+    int m,n;
+    scanf("%d%d",&m,&n);
+    int a[100][100];
+    int hangmin=0;
+    int min=0;
+    for(int i=0;i<m;i++){
+        for(int j=0;j<n;j++){
+            scanf("%d",&a[i][j]);
+        }
+    }
+    for(int i=0;i<m;i++){
+        int sum=0;
+        for(int j=0;j<n;j++){
+            sum+=a[i][j];
+        }
+        if(sum<min){
+            min=sum;
+            hangmin=i;
+        }
+    }
+    printf("hang co tong nho nhat la %d",hangmin+1);
 }
-
-user :: user(int id,std::string name,int money){
-    this -> name = name;
-    this -> id = id;
-    this -> money = money;
-}
-
-void user :: set_id(int id){
-    this -> id = id;
-}
-
-void user :: set_name(std::string name){
-    this -> name = name;
-}
-
-void user :: set_money(int money){
-    this -> money = money;
-}
-
-std::string user :: get_name(){
-    return this -> name;
-}
-
-int user :: get_id(){
-    return this -> id;
-}
-
-int user :: get_money(){
-    return this -> money;
-}
-
-void user :: add_time(int time){
-    this -> money += time;
-}
-
-user :: ~user(){
-
-};

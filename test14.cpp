@@ -31,7 +31,6 @@ using namespace std;
 int main(){
     int count2=0;
     int count5=0;
-    int count=0;
     int n;
     scanf("%d",&n);
     for(int i=2;i<=n;i++){
