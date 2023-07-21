@@ -3,6 +3,5 @@
 
 using namespace std;
 int main(){
-    vector<int> v;
-    cout<<"tien yeu van";
+    cout<<"Hello World!";
 }
