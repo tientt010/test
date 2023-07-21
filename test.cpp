@@ -13,6 +13,5 @@ int main(){
 		if((int)(tmp*10)%10==0)k--;
 	}
 	if(k==2)printf("%.2lf",tmp);
-	else if(k==1)printf("%.1f",tmp);
-	else printf("%d",(int)tmp);
+	else if(k==1)printf("%.1
 }
