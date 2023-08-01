@@ -1,38 +1,30 @@
-#include<stdio.h>
-
-struct test{
-    int so;
-    int tong;
-};
-
-int tongchuso(int x){
-    int ans=0;
-    while(x>0){
-        ans+=(x%10);
-        x/=10;
-    }
-    return ans;
+#include<bits/stdc++.h>
+ 
+using namespace std;
+ 
+bool test(int a[],int n,int i,int x,int y){
+	if(x==0&&y==0)return 1;
+	if(i>n)return 0;
+	if(test(a,n,i+1,x-a[i],y)||test(a,n,i+1,x,y-a[i]))return 1;
+ 
 }
-
+ 
 int main(){
-    int n;
-    scanf("%d",&n);
-    struct test a[1000];
-    for(int i=0;i<n;i++){
-        scanf("%d",&a[i].so);
-        a[i].tong=tongchuso(a[i].so);
-    }
-    for(int i=0;i<n;i++){
-        for(int j=i+1;j<n;j++){
-            if(a[i].tong>a[j].tong){
-                struct test tmp=a[i];
-                a[i]=a[j];
-                a[j]=tmp;
-            }
-        }
-    }
-    for(int i=0;i<n;i++){
-        printf("%d ",a[i].so);
-    }
-
-}
+	int t;
+	cin>>t;
+	while(t--){
+		int n;
+		cin>>n;
+		int a[100];
+		int sum=0;
+		for(int i=0;i<n;i++){
+			cin>>a[i];
+			sum+=a[i];
+		}
+		if(sum%2==0){
+			sum/=2;
+			if(test(a,n-1,0,sum,sum))cout<<"YES"<<endl;
+			else cout<<"NO"<<endl;
+		}else cout<<"NO"<<endl;
+	}
+} 

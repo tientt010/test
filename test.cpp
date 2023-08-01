@@ -1,33 +1,41 @@
 #include<bits/stdc++.h>
+
+
 using namespace std;
 
-// Ham tinh téng ca mot mang
-int sum(vector<int> &arr, int left, int right)
-{
-    int total = 0;
-    for (int i = left; i <= right; i++)
-    {
-        total += arr[i];
+string rotate(string x,int n){
+    int m=0;
+    for(int i=0;i<n;i++){
+        m+=(x[i]-'A');
     }
-    return total;
+    for(int i=0;i<n;i++){
+        int p=(x[i]-'A'+m)%26;
+        x[i]=(char)(p+'A');
+    }   
+    return x;
 }
 
-    // Ham chia dé tri tinh tong cic phan tir trong mang
-    int divideAndConquer(vector<int> & arr, int left, int right){
-        if (left == right){
-            return arr[left];
-        }else{
-            int mid = (left + right) / 2;
-            int leftsum = divideAndConquer(arr, left, mid);
-            int rightSum = divideAndConquer(arr, mid + 1, right);
-            int crossingsum = sum(arr, left, right);
-            return max(max(leftsum, rightSum), crossingsum);
-        }
+string merge(string a,string b,int n){
+    for(int i=0;i<n;i++){
+        int p=(a[i]-'A'+b[i]-'A')%26;
+        a[i]=(char)(p+'A');
     }
+    return a;
+}
 
 int main(){
-    vector<int> arr = {1, -2,3,9, 10,1 ,2};
-    int result = divideAndConquer(arr,0, arr.size() - 1);
-    cout <<"Tong lon nhat cua day so la : " << result << endl;
-    return 0;
+    int t;
+    cin>>t;
+    while(t--){
+        string s;
+        cin>>s;
+        int n=s.size();
+        n/=2;
+        string a=s.substr(0,n);
+        string b=s.substr(n,2*n-1);
+        a=rotate(a,n);
+        b=rotate(b,n);
+        a=merge(a,b,n);
+        cout<<a<<endl;
+    }
 }
